@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Our Loopback App</title>
+</head>
+<body>
+
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, animi blanditiis consequuntur, cum dicta enim est excepturi hic ipsam laudantium, molestiae qui quod reiciendis suscipit vero. Cum deserunt hic nemo quisquam recusandae rem sit suscipit temporibus ullam? A aspernatur dignissimos ex fugit harum, itaque neque quia quis ratione, repellendus voluptas.
+
+    <div id="app">
+        <h1>Our first App</h1>
+
+        <ul>
+            <li v-for="post in posts">
+                <h2>{{post.title}}</h2>
+                <p>
+                    {{post.content}}
+                </p>
+            </li>
+        </ul>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+
+    <script>
+        let app = new Vue({
+            el: "#app",
+            data: {
+                posts: []
+            },
+            mounted() {
+                axios.get('/api/Posts').then((response) => {
+                    this.posts = response.data
+                    console.log(this.posts)
+                })
+            }
+        })
+
+    </script>
+</body>
+</html>
